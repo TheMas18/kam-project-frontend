@@ -187,19 +187,59 @@ Response Code:
 ```
 
 ---
-#### Other API For Restaurant Page
-```bash
-GET http://localhost:8080/restaurants/{restaurantId}         			- Get restaurant by id
-GET http://localhost:8080/restaurants/allstatus						    - Get all status options
-GET http://localhost:8080/restaurants/requiringCalls  					- Get restaurants requiring calls today
-GET http://localhost:8080/restaurants/wellPerforming 					- Get well-performing restaurants
-GET http://localhost:8080/restaurants/underPerforming 					- Get underperforming restaurants
-GET http://localhost:8080/restaurants/pendingFollowUps					- Get list of restaurants having pending followups
-GET http://localhost:8080/restaurants/statusCounts 					    - Get count of restaurants,contacts,interactions and order
-PUT http://localhost:8080/restaurants/{id}/currentStatus  				- Update restaurant status
-PUT http://localhost:8080/restaurants/{id}/callFrequency  				- Update restaurant call frequency
-PUT http://localhost:8080/restaurants/{id}/callDetails  				- Update call details
+### Additional Endpoints for Restaurant Page
 
+- **GET Restaurant by ID**
+  ```bash
+  GET http://localhost:8080/restaurants/{restaurantId}
+  ```
+
+- **GET All Status Options**
+  ```bash
+  GET http://localhost:8080/restaurants/allstatus
+  ```
+
+- **GET Restaurants Requiring Calls Today**
+  ```bash
+  GET http://localhost:8080/restaurants/requiringCalls
+  ```
+
+- **GET Well-Performing Restaurants**
+  ```bash
+  GET http://localhost:8080/restaurants/wellPerforming
+  ```
+
+- **GET Underperforming Restaurants**
+  ```bash
+  GET http://localhost:8080/restaurants/underPerforming
+  ```
+
+- **GET Restaurants with Pending Follow-Ups**
+  ```bash
+  GET http://localhost:8080/restaurants/pendingFollowUps
+  ```
+
+- **GET Count of Restaurants, Contacts, Interactions, and Orders**
+  ```bash
+  GET http://localhost:8080/restaurants/statusCounts
+  ```
+
+- **PUT Update Restaurant Status**
+  ```bash
+  PUT http://localhost:8080/restaurants/{id}/currentStatus
+  ```
+
+- **PUT Update Call Frequency**
+  ```bash
+  PUT http://localhost:8080/restaurants/{id}/callFrequency
+  ```
+
+- **PUT Update Call Details**
+  ```bash
+  PUT http://localhost:8080/restaurants/{id}/callDetails
+  ```
+
+---
 ## Contact Page
 
 ### GET: Retrieve All Contacts
