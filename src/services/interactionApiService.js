@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/interactions';
+const API_URL = `${process.env.REACT_APP_API_URL}/interactions`;
 
 const handleError = (error) => {
     console.error("Error fetching interactions:", error);

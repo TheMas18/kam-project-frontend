@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/restaurants';
+const API_URL = `${process.env.REACT_APP_API_URL}/restaurants`;
 
 const handleError=(error)=>{
     console.error("Error fetching restaurants:", error);

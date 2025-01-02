@@ -200,8 +200,10 @@ PUT http://localhost:8080/restaurants/{id}/currentStatus  				- Update restauran
 PUT http://localhost:8080/restaurants/{id}/callFrequency  				- Update restaurant call frequency
 PUT http://localhost:8080/restaurants/{id}/callDetails  				- Update call details
 
-### Contact Page
-#### GET: Retrieve All Contacts
+## Contact Page
+
+### GET: Retrieve All Contacts
+
 ```bash
 GET http://localhost:8080/contacts
 ```
@@ -220,7 +222,8 @@ Response Example:
 ]
 ```
 
-#### POST: Create Contact
+### POST: Create Contact
+
 ```bash
 POST http://localhost:8080/contacts
 ```
@@ -237,4 +240,153 @@ Request Body Example:
 }
 ```
 
-... (and so on for the remaining endpoints).
+### PUT: Update Contact
+
+```bash
+PUT http://localhost:8080/contacts/{contactId}
+```
+Request Body Example:
+```json
+{
+  "name": "Vegeta Op",
+  "role": "CHEF",
+  "phoneNumber": "99999",
+  "email": "kkkks@kitchen.com",
+  "restaurant": {
+    "id": 17
+  }
+}
+```
+
+### DELETE: Delete Contact
+
+```bash
+DELETE http://localhost:8080/contacts/{contactId}
+```
+Response: `204 No Content`
+
+### Additional Endpoints for Contact Page
+
+- **GET Contact by ID**
+  ```bash
+  GET http://localhost:8080/contacts/{id}
+  ```
+
+- **GET Contacts by Restaurant ID**
+  ```bash
+  GET http://localhost:8080/contacts/restaurant/{restaurantId}
+  ```
+
+- **GET All Roles**
+  ```bash
+  GET http://localhost:8080/contacts/roles
+  ```
+
+- **PUT Update Role**
+  ```bash
+  PUT http://localhost:8080/contacts/{id}/role
+  ```
+
+- **PUT Update Contact**
+  ```bash
+  PUT http://localhost:8080/contacts/{contactId}
+  ```
+
+---
+
+## Interaction Page
+
+### GET: Retrieve All Interactions
+
+```bash
+GET http://localhost:8080/interactions
+```
+Response Example:
+```json
+[
+  {
+    "id": 1,
+    "dateOfInteraction": "2024-12-18",
+    "interactionType": "VISIT",
+    "notes": "aasaa",
+    "followUpRequired": true,
+    "loggedBy": "22",
+    "restaurantId": 6,
+    "restaurantName": "The vvv Kitchen"
+  }
+]
+```
+
+### POST: Create Interaction
+
+```bash
+POST http://localhost:8080/interactions
+```
+Request Body Example:
+```json
+{
+  "restaurant": {
+    "id": 17
+  },
+  "dateOfInteraction": "2025-01-01",
+  "followUpRequired": true,
+  "interactionType": "CALL",
+  "notes": "adawds",
+  "loggedBy": "dd doe"
+}
+```
+
+### PUT: Update Interaction
+
+```bash
+PUT http://localhost:8080/interactions/{interactionId}
+```
+Request Body Example:
+```json
+{
+  "restaurant": {
+    "id": 6
+  },
+  "dateOfInteraction": "2024-12-18",
+  "interactionType": "VISIT",
+  "notes": "aasaaaaa",
+  "followUpRequired": true,
+  "loggedBy": "22"
+}
+```
+
+### DELETE: Delete Interaction
+
+```bash
+DELETE http://localhost:8080/interactions/{interactionId}
+```
+Response: `204 No Content`
+
+### Additional Endpoints for Interaction Page
+
+- **GET Interaction by ID**
+  ```bash
+  GET http://localhost:8080/interactions/{id}
+  ```
+
+- **GET Interactions by Restaurant ID**
+  ```bash
+  GET http://localhost:8080/interactions/restaurant/{restaurantId}
+  ```
+
+- **GET All Interaction Types**
+  ```bash
+  GET http://localhost:8080/interactions/interactionTypes
+  ```
+
+- **PUT Update Interaction Type**
+  ```bash
+  PUT http://localhost:8080/interactions/{interactionId}/interactionType
+  ```
+
+- **PUT Update Follow-Up Required**
+  ```bash
+  PUT http://localhost:8080/interactions/{interactionId}/follow-up
+  ```
+
+---
