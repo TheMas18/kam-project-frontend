@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getRestaurants, addRestaurant, updateRestaurantStatus, deleteRestaurant, updateRestaurantDetails, getAllStatus, getAllCallFrequency, updateCallFrequencyChange } from '../services/restaurantApiService';
-import '../assets/css/style.css';
+
 import { clearValidation, ValidateInputFields } from '../components/ValidateInputFields';
 import PopUpComponent from '../components/PopUpComponent.js';
 import ConfirmationPopup from '../components/ConfirmationPopup.js';
+import { Loader, NoDataMessage } from '../components/utils.js';
 
 const RestaurantPage = () => {
     //All the objects restaurant, status,call frequencies
@@ -39,10 +40,11 @@ const RestaurantPage = () => {
     //Delete Poupup fields
     const [showPopup, setShowPopup] = useState(false);
     const [restaurantIdToDelete, setRestaurantIdToDelete] = useState(null);
-
+    const [isLoading, setIsLoading] = useState(true); //loading functionality
     //Here,It is fetching and setting  Restaurants and All the status 
     useEffect(() => {
         const fetchData=async()=>{
+            setIsLoading(true);
             try {
                 const restaurantData = await getRestaurants();
                 setRestaurants(restaurantData);
@@ -53,6 +55,7 @@ const RestaurantPage = () => {
                 setAllCallFrequency(callFrequencyData);
             } 
             catch (error) {console.error("Failed to fetch restaurants:", error);} 
+            finally { setIsLoading(false);  }
         }
         fetchData();
         const modalElement = modalRef.current;
@@ -370,54 +373,57 @@ const RestaurantPage = () => {
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {currentRestaurants.map((restaurant) => (
-                                <tr key={restaurant.id}>
-                                    <th scope="row">{restaurant.id}</th>
-                                    <td>{restaurant.restaurantName}</td>
-                                    <td>{restaurant.address}</td>
-                                    <td>{restaurant.contactNumber}</td>
-                                    <td>{restaurant.assignedKam}</td>
-                                    <td>
-                                        <div className="radio-input-lead">
-                                            {allStatus.map((status) => (
-                                                <div key={`${restaurant.id}-${status}`} className="me-2">
-                                                    <input 
-                                                        type="radio" 
-                                                        id={`status-${restaurant.id}-${status}`}  
-                                                        name={`status-${restaurant.id}`}
-                                                        value={status}
-                                                        checked={restaurant.currentStatus === status}
-                                                        onChange={() => handleStatusChange(restaurant.id, status)}  
-                                                    />
-                                                    <label htmlFor={`status-${restaurant.id}-${status}`}>{status}</label>
+                            <tbody>
+                            {isLoading ? (<tr><td colSpan="9"><Loader /></td> </tr>)  : currentRestaurants.length===0 ? ( <tr><td><NoDataMessage/></td></tr>) :
+                                ( currentRestaurants.map((restaurant) => (
+                                        <tr key={restaurant.id}>
+                                            <th scope="row">{restaurant.id}</th>
+                                            <td>{restaurant.restaurantName}</td>
+                                            <td>{restaurant.address}</td>
+                                            <td>{restaurant.contactNumber}</td>
+                                            <td>{restaurant.assignedKam}</td>
+                                            <td>
+                                                <div className="radio-input-lead">
+                                                    {allStatus.map((status) => (
+                                                        <div key={`${restaurant.id}-${status}`} className="me-2">
+                                                            <input 
+                                                                type="radio" 
+                                                                id={`status-${restaurant.id}-${status}`}  
+                                                                name={`status-${restaurant.id}`}
+                                                                value={status}
+                                                                checked={restaurant.currentStatus === status}
+                                                                onChange={() => handleStatusChange(restaurant.id, status)}  
+                                                            />
+                                                            <label htmlFor={`status-${restaurant.id}-${status}`}>{status}</label>
+                                                        </div>
+                                                    ))}
                                                 </div>
-                                            ))}
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <select 
-                                            className="form-select" 
-                                            value={restaurant.callFrequency}  
-                                            onChange={(e) => handleCallFrequencyChange(restaurant.id, e.target.value)} 
-                                        >
-                                            {allCallFrequency.map((frequency) => (
-                                                <option key={frequency} value={frequency}>  {frequency} </option>
-                                            ))}
-                                        </select>
-                                    </td>
-                                    <td>{restaurant.lastCallDate}</td>
-                                    <td> 
-                                        <button className="btn btn-success m-1" onClick={() => handleEdit(restaurant)} > 
-                                            <i className="fa-solid fa-pen-to-square"></i> 
-                                        </button>
-                                        <button className="btn btn-danger m-1" onClick={() => handleDeletePopup(restaurant.id)} >  
-                                            <i className="fa-solid fa-trash"></i>   
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
+                                            </td>
+                                            <td>
+                                                <select 
+                                                    className="form-select" 
+                                                    value={restaurant.callFrequency}  
+                                                    onChange={(e) => handleCallFrequencyChange(restaurant.id, e.target.value)} 
+                                                >
+                                                    {allCallFrequency.map((frequency) => (
+                                                        <option key={frequency} value={frequency}>  {frequency} </option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                            <td>{restaurant.lastCallDate}</td>
+                                            <td> 
+                                                <button className="btn btn-success m-1" onClick={() => handleEdit(restaurant)} > 
+                                                    <i className="fa-solid fa-pen-to-square"></i> 
+                                                </button>
+                                                <button className="btn btn-danger m-1" onClick={() => handleDeletePopup(restaurant.id)} >  
+                                                    <i className="fa-solid fa-trash"></i>   
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                )}
+                                
+                            </tbody>
                     </table>
 </div>
                  {/* Pagination Functionality  */}

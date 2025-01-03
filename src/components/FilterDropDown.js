@@ -1,6 +1,6 @@
 
 import React from 'react';
-import '../assets/css/style.css';
+
 const FilterDropdown = ({ label, options, onFilterChange }) => {
     return (
         <li className="dropdown-submenu">

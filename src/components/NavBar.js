@@ -1,6 +1,6 @@
 import React from 'react'
 import websiteLogo from '../assets/images/udaan_logo.jpg'
-import '../assets/css/style.css';
+
 export default function NavBar() {
     return (
         <>

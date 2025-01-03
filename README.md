@@ -122,7 +122,7 @@ To run this project, ensure you have the following installed:
 ### Restaurant Page
 #### GET: Retrieve All Restaurants
 ```bash
-GET http://localhost:8080/restaurants
+ http://localhost:8080/restaurants
 ```
 Response Example:
 ```json
@@ -144,7 +144,7 @@ Response Example:
 
 #### POST: Add a New Restaurant
 ```bash
-POST http://localhost:8080/restaurants
+http://localhost:8080/restaurants
 ```
 Request Body Example:
 ```json
@@ -161,7 +161,7 @@ Request Body Example:
 
 #### PUT: Update Restaurant
 ```bash
-PUT http://localhost:8080/restaurants/{restaurantId}
+http://localhost:8080/restaurants/{restaurantId}
 ```
 Request Body Example:
 ```json
@@ -179,7 +179,7 @@ Request Body Example:
 
 #### DELETE: Delete Restaurant
 ```bash
-DELETE http://localhost:8080/restaurants/{restaurantId}
+http://localhost:8080/restaurants/{restaurantId}
 ```
 Response Code:
 ```bash
@@ -191,52 +191,52 @@ Response Code:
 
 - **GET Restaurant by ID**
   ```bash
-  GET http://localhost:8080/restaurants/{restaurantId}
+  http://localhost:8080/restaurants/{restaurantId}
   ```
 
 - **GET All Status Options**
   ```bash
-  GET http://localhost:8080/restaurants/allstatus
+  http://localhost:8080/restaurants/allstatus
   ```
 
 - **GET Restaurants Requiring Calls Today**
   ```bash
-  GET http://localhost:8080/restaurants/requiringCalls
+  http://localhost:8080/restaurants/requiringCalls
   ```
 
 - **GET Well-Performing Restaurants**
   ```bash
-  GET http://localhost:8080/restaurants/wellPerforming
+  http://localhost:8080/restaurants/wellPerforming
   ```
 
 - **GET Underperforming Restaurants**
   ```bash
-  GET http://localhost:8080/restaurants/underPerforming
+  http://localhost:8080/restaurants/underPerforming
   ```
 
 - **GET Restaurants with Pending Follow-Ups**
   ```bash
-  GET http://localhost:8080/restaurants/pendingFollowUps
+  http://localhost:8080/restaurants/pendingFollowUps
   ```
 
 - **GET Count of Restaurants, Contacts, Interactions, and Orders**
   ```bash
-  GET http://localhost:8080/restaurants/statusCounts
+  http://localhost:8080/restaurants/statusCounts
   ```
 
 - **PUT Update Restaurant Status**
   ```bash
-  PUT http://localhost:8080/restaurants/{id}/currentStatus
+  http://localhost:8080/restaurants/{id}/currentStatus
   ```
 
 - **PUT Update Call Frequency**
   ```bash
-  PUT http://localhost:8080/restaurants/{id}/callFrequency
+  http://localhost:8080/restaurants/{id}/callFrequency
   ```
 
 - **PUT Update Call Details**
   ```bash
-  PUT http://localhost:8080/restaurants/{id}/callDetails
+  http://localhost:8080/restaurants/{id}/callDetails
   ```
 
 ---

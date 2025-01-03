@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { countOfAllRecords, getAllPendingFollowUps, getTotalRestaurantStatus } from '../services/restaurantApiService';
-import '../assets/css/style.css';
-import '../assets/css/dashboard.css';
 import { PieChart } from '@mui/x-charts';
 
 export default function HomePage() {
@@ -105,7 +103,6 @@ const renderPagination = () => {
                             <th>ID</th>
                             <th>Restaurant Name</th>
                             <th>Contact Number</th>
-                
                             <th>Last-Call-Date</th>
                             <th>Assigned KAM</th>
                         </tr>
@@ -116,7 +113,6 @@ const renderPagination = () => {
                                   <td>{type.id}</td>
                                   <td>{type.restaurantName}</td>
                                   <td>{type.contactNumber}</td>
-        
                                   <td>{type.lastCallDate}</td>
                                   <td>{type.assignedKam}</td>
                                 </tr>

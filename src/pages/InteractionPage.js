@@ -2,10 +2,11 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'; 
 import { getRestaurantById, getRestaurants } from '../services/restaurantApiService';
 import { addInteraction, deleteInteraction, getInteractions, getInteractionTypes, updateInteracitonType, updateInteractionDetails, updateInteractionFollowUp } from '../services/interactionApiService';
-import '../assets/css/style.css';
 import PopUpComponent from '../components/PopUpComponent';
 import ConfirmationPopup from '../components/ConfirmationPopup';
 import { clearValidation, ValidateInputFields } from '../components/ValidateInputFields';
+import { Loader, NoDataMessage } from '../components/utils';
+
 export default function InteractionPage() {
     //All the objects interactions, restaurant, interaction types 
     const [interactions, setInteractions] = useState([]);
@@ -37,10 +38,12 @@ export default function InteractionPage() {
     //Delete Poupup fields
     const [showPopup, setShowPopup] = useState(false);
     const [interactionIdToDelete, setInteractionIdToDelete] = useState(null);
+    const [isLoading, setIsLoading] = useState(true); //loading functionality
     //Here,It is fetching and setting  Interactions
     useEffect(() => {
         const fetchData = async() => {
             try {
+                setIsLoading(true);
                 const interactionsData = await getInteractions();
                 setInteractions(interactionsData);
                 setFilteredInteractions(interactionsData)
@@ -49,6 +52,7 @@ export default function InteractionPage() {
                 const restaurantsData = await getRestaurants();
                 setRestaurants(restaurantsData);
             } catch (error) { console.error('Failed to fetch interactions:', error); }    
+            finally { setIsLoading(false);  }
         }
         fetchData();
         const modalElement = modalRef.current;
@@ -204,7 +208,7 @@ export default function InteractionPage() {
         } else {
             setFilteredInteractions(interactions.filter((interaction) => interaction.interactionType === interactionType && (interaction.restaurantName.toLowerCase().includes(searchQuery) || interaction.loggedBy.toLowerCase().includes(searchQuery)) ));
         }
-        setCurrentPage(1); // Reset to the first page
+        setCurrentPage(1); 
     };
 
    
@@ -215,8 +219,7 @@ export default function InteractionPage() {
         } else {
             setFilteredInteractions(interactions.filter((interaction) => interaction.followUpRequired === followUpRequired && (interaction.restaurantName.toLowerCase().includes(searchQuery) || interaction.loggedBy.toLowerCase().includes(searchQuery)) ));
         }
-        
-        setCurrentPage(1); // Reset to the first page
+        setCurrentPage(1); 
     };
     //Pagination Implementation
     const handlePagination = (direction) => {
@@ -336,7 +339,8 @@ export default function InteractionPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentInteractions.map((interaction) => (
+                        {isLoading ? (<tr><td colSpan="9"><Loader /></td> </tr>)  : currentInteractions.length===0 ? ( <tr><td><NoDataMessage/></td></tr>) :
+                                                                      (currentInteractions.map((interaction) => (
                             <tr key={interaction.id}>
                                 <th scope="row">{interaction.id}</th>
                                 <td>{interaction.restaurantName}</td>
@@ -367,7 +371,7 @@ export default function InteractionPage() {
                                     <button className="btn btn-danger m-1"  onClick={() => handleDeletePopup(interaction.id)}  >  <i className="fa-solid fa-trash"></i> </button>
                                 </td>
                             </tr>
-                        ))}
+                        )))}
                     </tbody>
                 </table>
                  {/* Pagination Functionality  */}

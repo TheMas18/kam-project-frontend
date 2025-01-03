@@ -157,3 +157,25 @@ export const getTotalRestaurantStatus=async()=>{
         handleError(error);
     }
 }
+
+// export const getOrderCountLastMonth=async()=>{
+
+//     try {
+//         const response= await axios.get(`${API_URL}/orderCountLastMonth`);
+//         console.log(response.data);
+//         return response.data;
+//     } catch (error) {
+//         handleError(error);
+//     }
+// }
+
+// export const getInteractionCountLastMonth=async()=>{
+    
+//     try {
+//         const response= await axios.get(`${API_URL}/interactionCountLastMonth`);
+//         console.log(response.data);
+//         return response.data;
+//     } catch (error) {
+//         handleError(error);
+//     }
+// }

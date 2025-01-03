@@ -2,8 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'; // Import Router components
 import NavBar from './components/NavBar';
 
-import './assets/css/style.css';
-import './assets/css/dashboard.css';
+
 import websiteLogo from './assets/images/udaan_logo.jpg'
 import HomePage from './pages/HomePage';
 import CallPlanning from './pages/CallPlanning';

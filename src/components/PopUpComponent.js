@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import '../assets/css/style.css';
 
 const PopUpComponent = ({ type, message, onClose, duration = 3000 }) => {
     const [visible, setVisible] = useState(true);

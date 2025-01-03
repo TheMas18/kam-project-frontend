@@ -1,6 +1,4 @@
 import React from "react";
-import "../assets/css/style.css"; // Ensure this path is correct
-import "../assets/css/dashboard.css"; // Add this import if you need dashboard-specific styling
 
 const FormComponent = ({
   columns,

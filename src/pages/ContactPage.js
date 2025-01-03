@@ -3,8 +3,8 @@ import { addContact, deleteContact, getContacts, getContactsByRestaurantId, getR
 import { getRestaurants } from '../services/restaurantApiService';
 import ConfirmationPopup from '../components/ConfirmationPopup';
 import PopUpComponent from '../components/PopUpComponent';
-import '../assets/css/style.css';
 import { clearValidation, ValidateInputFields } from '../components/ValidateInputFields';
+import { Loader, NoDataMessage } from '../components/utils';
 
 export default function ContactPage() {
     //All the objects contacts, restaurants ,roles
@@ -16,8 +16,8 @@ export default function ContactPage() {
     const [roleFilter, setRoleFilter] = useState('');// filter functionality variables
     const [editMode, setEditMode] = useState(false);// changing state for update and insert
     const modalRef = useRef(null);// modal used for popup
-    const [contactsPerPage] = useState(2);// for pagination
-    const [currentPage, setCurrentPage] = useState(1);// for pagination
+    const [contactsPerPage] = useState(2); // for pagination
+    const [currentPage, setCurrentPage] = useState(1); // for pagination
     const [currentContactId, setCurrentContactId] = useState(null);
     //All the fields of restaurants
     const [contactEmail, setContactEmail] = useState('');
@@ -35,15 +35,18 @@ export default function ContactPage() {
     //Delete Poupup fields
     const [showPopup, setShowPopup] = useState(false);
     const [contactIdToDelete, setContactIdToDelete] = useState(null);
+    const [isLoading, setIsLoading] = useState(true); //loading functionality
     //Here,It is fetching and setting  Restaurants and All the status 
     useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true);
             try {
                 const restaurantData = await getRestaurants();
                 setRestaurants(restaurantData);
                 const rolesData = await getRoles();
                 setRoles(rolesData);
             } catch (error) {  console.error('Failed to fetch contacts:', error);  }
+            finally { setIsLoading(false);  }
         }
         fetchData();
         fetchContacts();
@@ -333,7 +336,8 @@ export default function ContactPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentContacts.map((contact) => (
+                        { isLoading ? (<tr><td colSpan="9"><Loader /></td> </tr>)  : currentContacts.length===0 ? ( <tr><td><NoDataMessage/></td></tr>) :
+                           (currentContacts.map((contact) => (
                             <tr key={contact.id}>
                                 <td>{contact.restaurantId}</td>
                                 <td>{contact.restaurantName}</td>
@@ -356,7 +360,7 @@ export default function ContactPage() {
                                     </button>
                                 </td>
                             </tr>
-                        ))}
+                        )))}
                     </tbody>
                 </table>
                 {/* Pagination Functionality  */}

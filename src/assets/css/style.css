@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body,
 html,
@@ -5,12 +10,40 @@ html,
   height: 100vh;
   width: 100%;
   margin: 0;
+  background-color: #f5f5f5;
 }
-nav{
+
+nav {
   box-shadow: 0px 2px 7px 2px black;
-  position:fixed;
-  
+  position: fixed;
 }
+
+/*App.js - styling */
+
+.app-container {
+  display: flex;
+}
+
+/* Main Content */
+#dashboard-interface {
+  width: 100%;
+  margin-left: 300px;
+  position: relative;
+  background-color: #f5f5f5;
+}
+
+.navigation {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+}
+
+.content-container {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+
 
 /*Css for Add Lead*/
 .coolinput {
@@ -33,21 +66,28 @@ nav{
   width: fit-content;
 }
 
-.coolinput input[type="text"].input,
+.coolinput input.input {
+  padding: 11px 10px;
+  font-size: 0.75rem;
+  border: 2px #818cf8 solid;
+  border-radius: 5px;
+  background: #e8e8e8;
+}
+
+/* .coolinput input[type="text"].input,
 input[type="tel"].input,
 input[type="radio"].input,
-input[type="date"].input ,
-input[type="email"].input
-{
+input[type="date"].input,
+input[type="email"].input {
   padding: 11px 10px;
   font-size: 0.75rem;
   border: 2px #818cf8 solid;
   border-radius: 5px;
   background: #e8e8e8;
 
-}
+} */
 
-.coolinput select{
+.coolinput select {
   padding: 11px 10px;
   font-size: 0.75rem;
   border: 2px #818cf8 solid;
@@ -55,81 +95,8 @@ input[type="email"].input
   background: #e8e8e8;
 }
 
-.coolinput input[type="text"].input:focus {
+.coolinput input.input:focus {
   outline: none;
-}
-
-/*Logout btn*/
-
-.logoutBTN {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 45px;
-  height: 45px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition-duration: 0.3s;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-  background-color: rgb(255, 65, 65);
-}
-
-/* plus sign */
-.sign {
-  width: 100%;
-  transition-duration: 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sign svg {
-  width: 17px;
-}
-
-.sign svg path {
-  fill: white;
-}
-
-/* text */
-.text-logout {
-  position: absolute;
-  right: 0%;
-  width: 0%;
-  opacity: 0;
-  color: white;
-  font-size: 1.2em;
-  font-weight: 600;
-  transition-duration: 0.3s;
-}
-
-/* hover effect on button width */
-.logoutBTN:hover {
-  width: 125px;
-  border-radius: 40px;
-  transition-duration: 0.3s;
-}
-
-.logoutBTN:hover .sign {
-  width: 30%;
-  transition-duration: 0.3s;
-  padding-left: 20px;
-}
-
-/* hover effect button's text */
-.logoutBTN:hover .text-logout {
-  opacity: 1;
-  width: 70%;
-  transition-duration: 0.3s;
-  padding-right: 10px;
-}
-
-/* button click effect*/
-.logoutBTN:active {
-  transform: translate(2px, 2px);
 }
 
 /*radio buttons lead popup*/
@@ -251,81 +218,6 @@ input[type="email"].input
   font-size: 20px;
   /* border: 1px solid red; */
   padding: 12px 140px 9px 20px;
-}
-
-/*Add Lead Button Design*/
-
-.add-lead-Btn-style button {
-  width: 150px;
-  height: 50px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-
-  border: none;
-  border-radius: 30px;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
-  background: #a60005;
-}
-
-.add-lead-Btn-style button,
-.add-lead-Btn-style button span {
-  transition: 200ms;
-}
-
-.add-lead-Btn-style button .text {
-  transform: translateX(16%);
-  font-size: 90%;
-  color: white;
-  font-weight: bold;
-}
-
-.add-lead-Btn-style button .icon {
-  position: absolute;
-  border-left: 2px solid white;
-  transform: translateX(105px);
-  height: 40px;
-  width: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.add-lead-Btn-style button svg {
-  width: 15px;
-  fill: #eee;
-}
-
-.add-lead-Btn-style button:hover {
-  background: #00a600;
-}
-
-.add-lead-Btn-style button:active {
-  background: #00cc00;
-}
-
-.add-lead-Btn-style button:hover .text {
-  color: transparent;
-}
-
-.add-lead-Btn-style button:hover .icon {
-  width: 150px;
-  border-left: none;
-  transform: translateX(0);
-}
-
-.add-lead-Btn-style button:focus {
-  outline: none;
-}
-
-.add-lead-Btn-style button:active .icon svg {
-  transform: scale(0.8);
-}
-
-.add-lead-Btn-style .buttonSpan {
-  color: white;
-  margin: 150px;
-  font-size: 25px;
 }
 
 /*----pagination logic*/
@@ -463,66 +355,54 @@ input[type="email"].input
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 /*Performance Tracing Css*/
-.main-container{
+.main-container {
   height: 100%;
 }
-.first-container{
-   height: 50%;
-   max-height: 50%;
-   display: flex;
-   flex-direction: column;
-   overflow-y: auto; /* Allows scrolling if the content overflows */
 
-}
-.second-container{
-
+.first-container {
   height: 50%;
   max-height: 50%;
   display: flex;
- 
-  overflow-y: auto; /* Allows scrolling if the content overflows */
-}
-.table-container {
-  flex-grow: 1; /* Ensures that the table takes up all available space */
+  flex-direction: column;
   overflow-y: auto;
-  
+  /* Allows scrolling if the content overflows */
+
+}
+
+.second-container {
+  height: 50%;
+  max-height: 50%;
+  display: flex;
+  overflow-y: auto;
+}
+
+.table-container {
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .pagination-container {
   text-align: right;
-  position: relative; 
-  bottom: 0; 
-  z-index: 1; 
+  position: relative;
+  bottom: 0;
+  z-index: 1;
 }
-.piechart-container{
+
+.piechart-container {
   width: 40%;
   /* padding: 0 2vw; */
 }
-.table-container-2{
+
+.table-container-2 {
   width: 50%;
-  flex-grow: 1; /* Ensures that the table takes up all available space */
+  flex-grow: 1;
   overflow-y: auto;
 }
-.header-text{
-  padding:8px
+
+.header-text {
+  padding: 8px
 }
-
-
-
-
-
 
 
 /* Style for the main dropdown */
@@ -530,33 +410,38 @@ input[type="email"].input
   position: relative;
   min-width: 200px;
 }
-.filter-dropdown  button{
+
+.filter-dropdown button {
   width: 8vw;
   height: 42px;
   padding: 5px;
   border-radius: 50px;
   font-size: 18px;
 }
+
 .dropdown-menu {
   position: relative;
   display: none;
   width: 5vw;
+  background-color: #6c757d;
 }
 
 /* Show the dropdown when hovered */
 .dropdown:hover .dropdown-menu {
   display: block;
 }
-.filter-dropdown button:after{
+
+.filter-dropdown button:after {
   display: none;
 }
+
 /* Style for the submenu (nested dropdown) */
 .dropdown-submenu {
   position: relative;
 }
 
 /* Display the submenu when the parent is hovered */
-.dropdown-submenu:hover > .dropdown-menu {
+.dropdown-submenu:hover>.dropdown-menu {
   display: block;
   position: absolute;
   top: 0;
@@ -568,9 +453,9 @@ input[type="email"].input
 
 
 .dropdown-item {
-  padding: 10px;
+  padding: 7px;
   text-decoration: none;
-  background-color: black;
+  background-color: #6c757d;
   color: rgb(255, 255, 255);
 }
 
@@ -585,26 +470,33 @@ input[type="email"].input
 }
 
 
-
 /* Apply to all tables */
 
 .table {
   width: 100%;
-  font-size: 1rem; /* Increase overall font size */
+  position: relative ;/* Ensures fixed column width */
+
 }
 
 .table td,
 .table th {
-  padding: 10px; /* Increase cell padding */
-}
+  padding: 10px;
+  text-align: left;
+  vertical-align: middle;
+  word-wrap: break-word; /* Wraps long text */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Truncates long text with ellipsis */
+  
+  }
 
 .table th {
-  font-size: 1rem; /* Larger header font size */
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: bold;text-align: center;
 }
 
-
-
+.container-table{
+  width: 50%;
+}
 .popup-notification {
   position: fixed;
   top: 20px;
@@ -619,18 +511,54 @@ input[type="email"].input
 }
 
 .popup-notification.success {
-  background-color: #28a745; /* Green */
+  background-color: #28a745;
+  /* Green */
 }
 
 .popup-notification.error {
-  background-color: #dc3545; /* Red */
+  background-color: #dc3545;
+  /* Red */
 }
 
 @keyframes slide-in {
   from {
-      transform: translateX(100%);
+    transform: translateX(100%);
   }
+
   to {
-      transform: translateX(0);
+    transform: translateX(0);
   }
 }
+
+
+.showcase{
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center; 
+}
+.container-chart {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+
+@media (max-width:769px){
+  #dashboard-menu {
+    background-color: rgb(0, 0, 0);
+    width: 270px;
+    
+  }
+  .cards {
+    width: 100%; /* Single card per row on small screens */
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .cards {
+    width: 45%; /* Two cards per row on medium screens */
+  }
+}
+
