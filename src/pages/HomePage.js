@@ -3,6 +3,7 @@ import { countOfAllRecords, getAllPendingFollowUps, getTotalRestaurantStatus } f
 import { PieChart } from '@mui/x-charts';
 
 export default function HomePage() {
+  //All the stats
   const [totalRecords,setTotalRecords]= useState({
     totalRestaurants: 0,
     totalContacts: 0,
@@ -12,30 +13,23 @@ export default function HomePage() {
     activeRestaurants:0,
     inActiveRestaurants:0,
   });
-const [currentPage, setCurrentPage] = useState(1);// for pagination
-const [restaurantsPerPage] =useState(10);// for pagination
+  const [currentPage, setCurrentPage] = useState(1);// for pagination
+  const [restaurantsPerPage] =useState(10);// for pagination
+
   useEffect(()=>{
     const fetchData=async()=>{
       const countOfRecords = await countOfAllRecords();
       console.log("Fetched records:", countOfRecords); 
-      if (countOfRecords) {
-        setTotalRecords((prev) => ({ ...prev, ...countOfRecords }));
-      }
+      if (countOfRecords) {  setTotalRecords((prev) => ({ ...prev, ...countOfRecords })); }
       const pendingRecords = await getAllPendingFollowUps();
       console.log("Pending records:", pendingRecords); 
-      if (pendingRecords) {
-        setTotalRecords((prev) => ({ ...prev, pendingFollowUps: pendingRecords }));
-      }
-
+      if (pendingRecords) { setTotalRecords((prev) => ({ ...prev, pendingFollowUps: pendingRecords }));  }
       const totalStatus=await getTotalRestaurantStatus();
       if (totalStatus) {
         setTotalRecords((prev) => ({
-          ...prev,
-          activeRestaurants: totalStatus.active,
-          inActiveRestaurants: totalStatus.inactive,
+          ...prev, activeRestaurants: totalStatus.active, inActiveRestaurants: totalStatus.inactive,
         }));
       }
-
     }
     fetchData();
   },[]);
@@ -122,14 +116,10 @@ const renderPagination = () => {
                                   <td>{type.id}</td>
                                   <td>{type.restaurantName}</td>
                                   <td>{type.contactNumber}</td>
-                              
                                   <td>{type.lastCallDate}</td>
                                   <td>{type.assignedKam}</td>
                                 </tr>
                         ))}
-                    
-                    
-                    
                     </tbody>
                </table>
                {renderPagination()}
@@ -143,13 +133,9 @@ const renderPagination = () => {
                                     data: [
                                         { id: 0, value: totalRecords.activeRestaurants, label: 'Active' ,color: 'green' },
                                         { id: 1, value: totalRecords.inActiveRestaurants, label: 'InActive' ,color: 'red' },
-                                    ],
-                                    },
-                                ]}
-                                width={500}
-                                height={300}
-                                 />
-                    </div>
+                                    ],},
+                                ]} width={500} height={300} />
+               </div>
         </div>
       </div>
     </>

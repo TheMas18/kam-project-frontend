@@ -58,10 +58,10 @@ const RestaurantPage = () => {
             finally { setIsLoading(false);  }
         }
         fetchData();
-        const modalElement = modalRef.current;
-        const handleModalClose = () => resetForm();
-        if (modalElement) { modalElement.addEventListener('hidden.bs.modal', handleModalClose); }
-        return () => { if (modalElement) {  modalElement.removeEventListener('hidden.bs.modal', handleModalClose);  } };
+            const modalElement = modalRef.current;
+            const handleModalClose = () => resetForm();
+            if (modalElement) { modalElement.addEventListener('hidden.bs.modal', handleModalClose); }
+            return () => { if (modalElement) {  modalElement.removeEventListener('hidden.bs.modal', handleModalClose);  } };
     }, []);
     
    //Input validation
