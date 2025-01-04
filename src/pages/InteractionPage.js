@@ -339,7 +339,7 @@ export default function InteractionPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {isLoading ? (<tr><td colSpan="9"><Loader /></td> </tr>)  : currentInteractions.length===0 ? ( <tr><td><NoDataMessage/></td></tr>) :
+                        {isLoading ? (<tr><td colSpan="9"><Loader /></td></tr>)  : currentInteractions.length===0 ? ( <tr><td><NoDataMessage/></td></tr>) :
                                                                       (currentInteractions.map((interaction) => (
                             <tr key={interaction.id}>
                                 <th scope="row">{interaction.id}</th>

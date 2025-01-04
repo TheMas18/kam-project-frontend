@@ -100,7 +100,7 @@ export default function PerformanceTracking() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {isLoading ? (<tr><td colSpan="9"><Loader /></td> </tr>)  : currentWellPerformingRestaurants.length===0 ? ( <tr><td><NoDataMessage/></td></tr>) :
+                                        {isLoading ? (<tr><td colSpan="9"><Loader /></td></tr>)  : currentWellPerformingRestaurants.length===0 ? ( <tr><td><NoDataMessage/></td></tr>) :
                                                                    (currentWellPerformingRestaurants.map((restaurant) => (
                                             <tr key={restaurant.id}>
                                                 <th scope="row">{restaurant.id}</th>
@@ -139,7 +139,7 @@ export default function PerformanceTracking() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {isLoading ? (<tr><td colSpan="9"><Loader /></td> </tr>)  : currentUnderPerformingRestaurants.length===0 ? ( <tr><td><NoDataMessage/></td></tr>) :
+                                        {isLoading ? (<tr><td colSpan="9"><Loader /></td></tr>)  : currentUnderPerformingRestaurants.length===0 ? ( <tr><td><NoDataMessage/></td></tr>) :
                                                  (currentUnderPerformingRestaurants.map((restaurant) => (
                                             <tr key={restaurant.id}>
                                                 <td>{restaurant.restaurantName}</td>

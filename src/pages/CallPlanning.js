@@ -98,7 +98,7 @@ export default function CallPlanning() {
                         </tr>
                     </thead>
                     <tbody>
-                        {isLoading ? (<tr><td colSpan="9"><Loader /></td> </tr>)  : currentRestaurants.length===0 ? ( <tr><td><NoDataMessage/></td></tr>) :
+                        {isLoading ? (<tr><td colSpan="9"><Loader /></td></tr>)  : currentRestaurants.length===0 ? ( <tr><td><NoDataMessage/></td></tr>) :
                                                    (currentRestaurants.map((restaurant) => (
                             <tr key={restaurant.id}>
                                 <th scope="row">{restaurant.id}</th>

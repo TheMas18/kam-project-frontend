@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { countOfAllRecords, getAllPendingFollowUps, getTotalRestaurantStatus } from '../services/restaurantApiService';
 import { PieChart } from '@mui/x-charts';
+import { Loader, NoDataMessage } from '../components/utils';
 
 export default function HomePage() {
   //All the stats
@@ -15,21 +16,26 @@ export default function HomePage() {
   });
   const [currentPage, setCurrentPage] = useState(1);// for pagination
   const [restaurantsPerPage] =useState(10);// for pagination
-
+  const [isLoading, setIsLoading] = useState(true); //loading functionality
   useEffect(()=>{
     const fetchData=async()=>{
-      const countOfRecords = await countOfAllRecords();
-      console.log("Fetched records:", countOfRecords); 
-      if (countOfRecords) {  setTotalRecords((prev) => ({ ...prev, ...countOfRecords })); }
-      const pendingRecords = await getAllPendingFollowUps();
-      console.log("Pending records:", pendingRecords); 
-      if (pendingRecords) { setTotalRecords((prev) => ({ ...prev, pendingFollowUps: pendingRecords }));  }
-      const totalStatus=await getTotalRestaurantStatus();
-      if (totalStatus) {
-        setTotalRecords((prev) => ({
-          ...prev, activeRestaurants: totalStatus.active, inActiveRestaurants: totalStatus.inactive,
-        }));
+      setIsLoading(true);
+      try {
+        const countOfRecords = await countOfAllRecords();
+        console.log("Fetched records:", countOfRecords); 
+        if (countOfRecords) {  setTotalRecords((prev) => ({ ...prev, ...countOfRecords })); }
+        const pendingRecords = await getAllPendingFollowUps();
+        console.log("Pending records:", pendingRecords); 
+        if (pendingRecords) { setTotalRecords((prev) => ({ ...prev, pendingFollowUps: pendingRecords }));  }
+        const totalStatus=await getTotalRestaurantStatus();
+        if (totalStatus) {
+          setTotalRecords((prev) => ({
+            ...prev, activeRestaurants: totalStatus.active, inActiveRestaurants: totalStatus.inactive,
+          }));
       }
+      } catch(error) {  console.error('Failed to fetch data:', error);  }
+      finally { setIsLoading(false);  }
+      
     }
     fetchData();
   },[]);
@@ -102,7 +108,8 @@ const renderPagination = () => {
                         </tr>
                   </thead>
                   <tbody>
-                        {totalRecords.pendingFollowUps.map((type) =>(
+                        { isLoading ? (<tr><td colSpan="9"><Loader /></td></tr>)  : totalRecords.length===0 ? ( <tr><td><NoDataMessage/></td></tr>) :
+                                                   (totalRecords.pendingFollowUps.map((type) =>(
                           <tr key={type.id}>
                                   <td>{type.id}</td>
                                   <td>{type.restaurantName}</td>
@@ -110,16 +117,8 @@ const renderPagination = () => {
                                   <td>{type.lastCallDate}</td>
                                   <td>{type.assignedKam}</td>
                                 </tr>
-                        ))}
-                        {totalRecords.pendingFollowUps.map((type) =>(
-                          <tr key={type.id}>
-                                  <td>{type.id}</td>
-                                  <td>{type.restaurantName}</td>
-                                  <td>{type.contactNumber}</td>
-                                  <td>{type.lastCallDate}</td>
-                                  <td>{type.assignedKam}</td>
-                                </tr>
-                        ))}
+                        )))}
+                        
                     </tbody>
                </table>
                {renderPagination()}
@@ -131,8 +130,8 @@ const renderPagination = () => {
                                 series={[
                                     {
                                     data: [
-                                        { id: 0, value: totalRecords.activeRestaurants, label: 'Active' ,color: 'green' },
-                                        { id: 1, value: totalRecords.inActiveRestaurants, label: 'InActive' ,color: 'red' },
+                                        { id: 0, value: totalRecords.activeRestaurants ===0 ? 0:totalRecords.activeRestaurants, label: 'Active' ,color: 'green' },
+                                        { id: 1, value: totalRecords.inActiveRestaurants===0? 0:totalRecords.inActiveRestaurants, label: 'InActive' ,color: 'red' },
                                     ],},
                                 ]} width={500} height={300} />
                </div>

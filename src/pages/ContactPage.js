@@ -336,7 +336,7 @@ export default function ContactPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        { isLoading ? (<tr><td colSpan="9"><Loader /></td> </tr>)  : currentContacts.length===0 ? ( <tr><td><NoDataMessage/></td></tr>) :
+                        { isLoading ? (<tr><td colSpan="9"><Loader /></td></tr>)  : currentContacts.length===0 ? ( <tr><td><NoDataMessage/></td></tr>) :
                            (currentContacts.map((contact) => (
                             <tr key={contact.id}>
                                 <td>{contact.restaurantId}</td>

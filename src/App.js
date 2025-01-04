@@ -4,13 +4,13 @@ import NavBar from './components/NavBar';
 
 
 import websiteLogo from './assets/images/udaan_logo.jpg'
-import HomePage from './pages/HomePage';
-import CallPlanning from './pages/CallPlanning';
-import PerformanceTracking from './pages/PerformanceTracking';
 
 const RestaurantPage = lazy(() => import('./pages/RestaurantPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const InteractionPage = lazy(() => import('./pages/InteractionPage'));
+const HomePage = lazy(() => import('./pages/HomePage'));
+const CallPlanning = lazy(() => import('./pages/CallPlanning'));
+const PerformanceTracking = lazy(() => import('./pages/PerformanceTracking'));
 const App = () => {
   return (
     <Router>
