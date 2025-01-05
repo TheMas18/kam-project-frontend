@@ -21,7 +21,6 @@ const FormComponent = ({
       </thead>
       <tbody>
         {data.map((row, rowIndex) => (
-          // Ensure there are no extra spaces or line breaks here
           <tr key={row.id || rowIndex}>
             {columns.map((col, colIndex) => {
               const value = row[col.key];
@@ -91,7 +90,7 @@ const FormComponent = ({
                   </td>
                 );
               }
-              // Default cell rendering for plain text or other types
+   
               return <td key={`${row.id}-${col.key}-${colIndex}`}>{value}</td>;
             })}
             {actions && (

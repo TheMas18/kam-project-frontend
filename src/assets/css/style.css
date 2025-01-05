@@ -551,14 +551,14 @@ input[type="email"].input {
     
   }
   .cards {
-    width: 100%; /* Single card per row on small screens */
+    width: 100%; 
   }
 }
 
-/* Responsive Adjustments */
+
 @media (max-width: 1024px) {
   .cards {
-    width: 45%; /* Two cards per row on medium screens */
+    width: 45%; 
   }
 }
 

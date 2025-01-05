@@ -16,7 +16,7 @@ export default function ContactPage() {
     const [roleFilter, setRoleFilter] = useState('');// filter functionality variables
     const [editMode, setEditMode] = useState(false);// changing state for update and insert
     const modalRef = useRef(null);// modal used for popup
-    const [contactsPerPage] = useState(2); // for pagination
+    const [contactsPerPage] = useState(7); // for pagination
     const [currentPage, setCurrentPage] = useState(1); // for pagination
     const [currentContactId, setCurrentContactId] = useState(null);
     //All the fields of restaurants

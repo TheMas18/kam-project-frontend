@@ -84,7 +84,7 @@ To run this project, ensure you have the following installed:
 1. Download and install Java JDK from [Oracle](https://www.oracle.com/java/technologies/javase-downloads.html).
 2. Install MySQL Workbench from [MySQL](https://dev.mysql.com/downloads/workbench/).
 3. Install Eclipse IDE from [Eclipse](https://www.eclipse.org/downloads/).
-4. Download and install Node.js from [Node.js](https://nodejs.org/).
+4. Download and install Node.js from [Node.js](https://nodejs.org/). //if you want to run javascript
 5. Install Visual Studio Code from [VS Code](https://code.visualstudio.com/).
 
 ### 2. Using the ZIP File

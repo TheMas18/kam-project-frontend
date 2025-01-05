@@ -3,7 +3,7 @@ import React from 'react';
 const CommonDynamicTable = ({ columns, data, handleEdit, handleDelete, handleSearch, searchQuery, pagination }) => {
     return (
         <div>
-            {/* Search Box */}
+
             <div className="searchBox mb-3">
                 <input
                     className="searchInput"
@@ -27,7 +27,6 @@ const CommonDynamicTable = ({ columns, data, handleEdit, handleDelete, handleSea
                </button>
             </div>
 
-            {/* Table */}
             <table className="table mt-1 table-striped table-hover">
                 <thead>
                     <tr className="table-dark">
@@ -58,7 +57,6 @@ const CommonDynamicTable = ({ columns, data, handleEdit, handleDelete, handleSea
                 </tbody>
             </table>
 
-            {/* Pagination */}
             {pagination && (
                 <div className="d-flex justify-content-between">
                     <button onClick={pagination.prevPage} disabled={!pagination.hasPrev}>
